@@ -116,7 +116,7 @@ export default function OnboardingScreen() {
                 className="w-full py-4 bg-transparent hover:bg-gray-100 rounded-xl text-gray-900 font-semibold transition-all press-effect flex items-center justify-center gap-3 shadow-lg"
               >
                 {loading ? <Loader2 className="animate-spin" size={20} /> : null}
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" alt="Google" className="w-6 h-6" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" className="w-6 h-6" />
                 Sign in with Google
               </button>
 
