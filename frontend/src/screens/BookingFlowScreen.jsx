@@ -6,7 +6,6 @@ import { t } from '../utils/translations';
 import { formatIndianNumber, validatePhone } from '../utils/formatters';
 import api from '../utils/api';
 import { ArrowLeft, Check, Shield, Loader2, TrendingUp, Calendar, Wallet, FileText, UserCheck, Award } from 'lucide-react';
-import LanguageSwitcher from '../components/LanguageSwitcher';
 
 const STEPS = ['amount', 'tenor', 'payout', 'bank', 'summary', 'kyc', 'confirm'];
 
@@ -182,7 +181,6 @@ export default function BookingFlowScreen() {
               </div>
             </div>
           </div>
-          <LanguageSwitcher />
         </div>
 
         {/* Progress bar */}
@@ -218,7 +216,7 @@ export default function BookingFlowScreen() {
                 <button
                   key={amt}
                   onClick={() => setAmount(amt)}
-                  className={`py-5 rounded-2xl text-lg font-medium transition-all press-effect ${
+                  className={`py-3 rounded-xl text-sm font-bold transition-all press-effect ${
                     amount === amt
                       ? 'bg-gradient-to-r from-saffron to-saffron-light text-[var(--text-main)] shadow-lg glow-saffron'
                       : 'bg-transparent/5 text-[var(--text-muted)] hover:bg-transparent/10 hover:text-[var(--text-main)] border border-white/10'
@@ -251,7 +249,7 @@ export default function BookingFlowScreen() {
                 <button
                   key={opt.value}
                   onClick={() => setTenor(opt.value)}
-                  className={`w-full py-5 rounded-2xl text-lg font-medium transition-all press-effect text-left px-6 ${
+                  className={`w-full py-3 rounded-xl text-sm font-bold transition-all press-effect text-left px-4 ${
                     tenor === opt.value
                       ? 'bg-gradient-to-r from-saffron to-saffron-light text-[var(--text-main)] shadow-lg'
                       : 'bg-transparent/5 text-[var(--text-muted)] hover:bg-transparent/10 hover:text-[var(--text-main)] border border-white/10'
@@ -275,47 +273,47 @@ export default function BookingFlowScreen() {
             </p>
             <button
               onClick={() => setPayoutType('cumulative')}
-              className={`w-full p-6 rounded-2xl border-2 text-left transition-all press-effect ${
+              className={`w-full p-4 rounded-xl border-2 text-left transition-all press-effect ${
                 payoutType === 'cumulative'
-                  ? 'border-saffron bg-saffron/10 shadow-lg'
+                  ? 'border-saffron bg-saffron/10 shadow-sm'
                   : 'border-white/20 bg-transparent/5 hover:border-white/30'
               }`}
             >
-              <div className="flex items-center gap-4 mb-3">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+              <div className="flex items-center gap-3 mb-2">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                   payoutType === 'cumulative' ? 'bg-saffron text-[var(--text-main)]' : 'bg-transparent/10 text-[var(--text-muted)]'
                 }`}>
                   <TrendingUp size={24} />
                 </div>
                 <div className="text-left">
-                  <p className="text-[var(--text-main)] font-semibold text-lg">{t('zyadaPaisa', language)}</p>
-                  <p className="text-[var(--text-muted)] text-sm">Compound interest - grow faster</p>
+                  <p className="text-[var(--text-main)] font-semibold text-sm">{t('zyadaPaisa', language)}</p>
+                  <p className="text-[var(--text-muted)] text-[11px]">Compound interest - grow faster</p>
                 </div>
               </div>
-              <p className="text-[var(--text-muted)] text-sm pl-16">
+              <p className="text-[var(--text-muted)] text-[11px] pl-13">
                 Interest principal mein add hoga. End mein zyada paisa milega.
               </p>
             </button>
             <button
               onClick={() => setPayoutType('non-cumulative')}
-              className={`w-full p-6 rounded-2xl border-2 text-left transition-all press-effect ${
+              className={`w-full p-4 rounded-xl border-2 text-left transition-all press-effect ${
                 payoutType === 'non-cumulative'
-                  ? 'border-saffron bg-saffron/10 shadow-lg'
+                  ? 'border-saffron bg-saffron/10 shadow-sm'
                   : 'border-white/20 bg-transparent/5 hover:border-white/30'
               }`}
             >
-              <div className="flex items-center gap-4 mb-3">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+              <div className="flex items-center gap-3 mb-2">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
                   payoutType === 'non-cumulative' ? 'bg-saffron text-[var(--text-main)]' : 'bg-transparent/10 text-[var(--text-muted)]'
                 }`}>
                   <Wallet size={24} />
                 </div>
                 <div className="text-left">
-                  <p className="text-[var(--text-main)] font-semibold text-lg">{t('monthlyPaisa', language)}</p>
-                  <p className="text-[var(--text-muted)] text-sm">Regular income stream</p>
+                  <p className="text-[var(--text-main)] font-semibold text-sm">{t('monthlyPaisa', language)}</p>
+                  <p className="text-[var(--text-muted)] text-[11px]">Regular income stream</p>
                 </div>
               </div>
-              <p className="text-[var(--text-muted)] text-sm pl-16">
+              <p className="text-[var(--text-muted)] text-[11px] pl-13">
                 Har mahine interest milega. Principal end mein wapas aayega.
               </p>
             </button>
@@ -334,21 +332,21 @@ export default function BookingFlowScreen() {
                 <button
                   key={bank.id}
                   onClick={() => setSelectedBank(bank)}
-                  className={`w-full p-4 rounded-2xl border-2 text-left transition-all press-effect ${
+                  className={`w-full p-3 rounded-xl border-2 text-left transition-all press-effect ${
                     selectedBank?.id === bank.id
-                      ? 'border-saffron bg-saffron/10 shadow-lg'
+                      ? 'border-saffron bg-saffron/10 shadow-sm'
                       : 'border-white/20 bg-transparent/5 hover:border-white/30'
                   }`}
                 >
                   <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-transparent/10 rounded-xl flex items-center justify-center">
-                        <span className="text-saffron font-bold text-lg">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 bg-transparent/10 rounded-lg flex items-center justify-center">
+                        <span className="text-saffron font-bold text-sm">
                           {bank.bank_name.charAt(0)}
                         </span>
                       </div>
                       <div>
-                        <p className="text-[var(--text-main)] font-semibold">{bank.bank_name}</p>
+                        <p className="text-[var(--text-main)] text-sm font-semibold">{bank.bank_name}</p>
                         {bank.is_dicgc_insured && (
                           <span className="text-xs text-green-400 flex items-center gap-1 mt-1">
                             <Shield size={10} /> DICGC Insured
@@ -357,9 +355,9 @@ export default function BookingFlowScreen() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-saffron text-2xl font-bold">{rate}%</p>
+                      <p className="text-saffron text-lg font-bold">{rate}%</p>
                       {isSenior && (
-                        <p className="text-green-400 text-xs">+0.5% Senior</p>
+                        <p className="text-green-400 text-[10px]">+0.5% Senior</p>
                       )}
                     </div>
                   </div>
@@ -515,15 +513,15 @@ export default function BookingFlowScreen() {
               (STEPS[currentStep] === 'bank' && !selectedBank) ||
               (STEPS[currentStep] === 'amount' && !amount)
             }
-            className="w-full py-4 bg-gradient-to-r from-saffron to-saffron-light hover:shadow-xl hover:glow-saffron disabled:opacity-50 disabled:cursor-not-allowed rounded-2xl text-[var(--text-main)] font-semibold transition-all press-effect flex items-center justify-center gap-2"
+            className="w-full py-3 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] hover:shadow-lg hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl text-[var(--text-main)] font-semibold text-sm transition-all press-effect flex items-center justify-center gap-2"
           >
-            {loading && <Loader2 className="animate-spin" size={20} />}
+            {loading && <Loader2 className="animate-spin" size={16} />}
             {currentStep === 4 ? 'Confirm Booking' : t('next', language)}
           </button>
         ) : (
           <button
             onClick={() => navigate('/my-fds')}
-            className="w-full py-4 bg-gradient-to-r from-saffron to-saffron-light hover:shadow-xl rounded-2xl text-[var(--text-main)] font-semibold transition-all press-effect"
+            className="w-full py-3 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] hover:shadow-lg rounded-xl text-[var(--text-main)] text-sm font-semibold transition-all press-effect"
           >
             View My FDs
           </button>
