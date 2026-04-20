@@ -43,6 +43,36 @@ export default function MyFdsScreen() {
     }
   };
 
+  const handleDownloadReceipt = (booking) => {
+    const receiptContent = `
+=========================================
+            FD MITRA RECEIPT
+=========================================
+Booking ID    : ${booking.id}
+Date          : ${new Date(booking.created_at).toLocaleString('hi-IN')}
+Status        : ${booking.status.toUpperCase()}
+=========================================
+Bank          : ${booking.bank_name}
+Principal     : Rs. ${booking.principal_amount}
+Interest Rate : ${booking.interest_rate}% p.a.
+Maturity Date : ${new Date(booking.maturity_date).toLocaleDateString('hi-IN')}
+Maturity Amt. : Rs. ${booking.maturity_amount}
+=========================================
+Nominee       : ${booking.nominee_name || 'N/A'}
+=========================================
+Thank you for using FD Mitra!
+    `;
+    const blob = new Blob([receiptContent.trim()], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = \`FD_Mitra_Receipt_\${booking.id.substring(0, 8)}.txt\`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  };
+
   const shareOnWhatsApp = (booking) => {
     const msg = `FD Details:\n\nBank: ${booking.bank_name}\nAmount: ${formatIndianNumber(booking.principal_amount)}\nMaturity: ${formatIndianNumber(booking.maturity_amount)}\nDate: ${new Date(booking.maturity_date).toLocaleDateString('hi-IN')}\n\nShared from FD Mitra App`;
     window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
@@ -187,10 +217,7 @@ export default function MyFdsScreen() {
                       <Share2 size={12} /> Share
                     </button>
                     <button
-                      onClick={async () => {
-                        const receipt = await getReceipt(booking.id);
-                        if (receipt) alert('Receipt downloaded! (Demo mode)');
-                      }}
+                      onClick={() => handleDownloadReceipt(booking)}
                       className={`flex-1 py-2 flex items-center justify-center gap-1.5 rounded-lg text-xs font-bold transition-all border ${
                         ''
                       }`}
