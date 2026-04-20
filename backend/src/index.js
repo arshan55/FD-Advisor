@@ -17,7 +17,8 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3002';
 
 // Middleware
 app.use(cors({
-  origin: FRONTEND_URL,
+  // Dynamically reflect the origin to allow any frontend Vercel preview URL, while keeping credentials support
+  origin: true,
   credentials: true
 }));
 app.use(express.json());
