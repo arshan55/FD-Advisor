@@ -420,6 +420,48 @@ const translations = {
     tamil: 'நேரடியாக கேட்கவும்',
     english: 'Ask Directly',
     hinglish: 'Sidha puchein'
+  },
+  
+  // Dynamic UI Phrases
+  welcomeSubtitle: {
+    hi: 'मैं आपकी मदद के लिए तैयार हूँ। FD के बारे में कुछ भी पूछें!',
+    bhojpuri: 'हम राउर मदद खातिर तइयार बानी। FD के बारे में कुछ भी पूछीं!',
+    marathi: 'मी तुम्हाला मदत करण्यासाठी तयार आहे. FD बद्दल काहीही विचारा!',
+    tamil: 'நான் உங்களுக்கு உதவ தயாராக உள்ளேன். FD பற்றி ஏதாவது கேளுங்கள்!',
+    english: 'I am ready to help you. Ask anything about FD!',
+    hinglish: 'Main aapki madad ke liye ready hoon. FD ke baare mein kuch bhi puchhein!'
+  },
+  tryAsking: {
+    hi: 'यह पूछकर देखें:',
+    bhojpuri: 'ई पूछ के देखीं:',
+    marathi: 'हे विचारून पहा:',
+    tamil: 'இதை கேட்டுப் பாருங்கள்:',
+    english: 'Try asking:',
+    hinglish: 'Yeh puch kar dekhen:'
+  },
+  glossarySubtitle: {
+    hi: 'यह FD से संबंधित महत्वपूर्ण शब्द हैं। हर शब्द को क्लिक करके विवरण देखें।',
+    bhojpuri: 'ई FD से जुड़ल जरूरी शब्द हवें। हर शब्द पे क्लिक क के जानकारी देखीं।',
+    marathi: 'हे FD शी संबंधित महत्त्वाचे शब्द आहेत. प्रत्येक शब्दावर क्लिक करून तपशील पहा.',
+    tamil: 'இவை FD தொடர்பான முக்கியமான சொற்கள். ஒவ்வொரு சொல்லையும் கிளிக் செய்து விவரங்களைப் பார்க்கவும்.',
+    english: 'These are important terms related to FD. Click on each term to see the details.',
+    hinglish: 'Yeh FD se related important terms hain. Har term ko click karke details dekhein.'
+  },
+  askAnythingAboutFd: {
+    hi: 'FD के बारे में कुछ भी पूछें',
+    bhojpuri: 'FD के बारे में कुछ भी पूछीं',
+    marathi: 'FD बद्दल काहीही विचारा',
+    tamil: 'FD பற்றி எதையும் கேளுங்கள்',
+    english: 'Ask anything about FD',
+    hinglish: 'FD ke baare me kuch bhi punche'
+  },
+  botReadyToHelp: {
+    hi: 'कोई भी सवाल पूछें - मैं आपकी मदद के लिए यहाँ हूँ!',
+    bhojpuri: 'कवनो सवाल पूछीं - हम राउर मदद खातिर इहाँ बानी!',
+    marathi: 'काहीही प्रश्न विचारा - मी तुम्हाला मदत करण्यासाठी येथे आहे!',
+    tamil: 'எந்த கேள்வியையும் கேளுங்கள் - நான் உங்களுக்கு உதவ இங்கே இருக்கிறேன்!',
+    english: 'Ask any question - I am here to help you!',
+    hinglish: 'Koi bhi sawaal puchho - main aapki madad ke liye yahan hoon!'
   }
 };
 

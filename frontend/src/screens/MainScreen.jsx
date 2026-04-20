@@ -108,13 +108,13 @@ export default function MainScreen() {
               <p className="text-2xl mb-1">👋</p>
               <p className={`text-lg font-bold mb-2 `}>{t('welcome', language)}</p>
               <p className={`text-sm leading-relaxed text-[var(--text-muted)]`}>
-                Main aapki madad ke liye ready hoon. FD ke baare mein kuch bhi puchhein!
+                {t('welcomeSubtitle', language)}
               </p>
             </div>
 
             {/* Quick start suggestions */}
             <div className="mt-6 space-y-3">
-              <p className={`text-sm font-medium `}>Try asking:</p>
+              <p className={`text-sm font-medium `}>{t('tryAsking', language)}</p>
               <div className="flex flex-wrap justify-center gap-2">
                 {quickReplies.map((reply) => (
                   <button

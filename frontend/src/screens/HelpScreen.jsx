@@ -60,7 +60,7 @@ export default function HelpScreen() {
                 <h2 className={`font-bold text-base leading-tight `}>FD Glossary</h2>
               </div>
               <p className={`text-sm leading-relaxed text-[var(--text-muted)]`}>
-                Yeh FD se related important terms hain. Har term ko click karke details dekhein.
+                {t('glossarySubtitle', language)}
               </p>
             </div>
 
@@ -148,17 +148,17 @@ export default function HelpScreen() {
             <div className={`w-8 h-1 rounded-full mx-auto mb-5 `} />
 
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-[var(--modal-bg)]0/10 rounded-lg flex items-center justify-center">
                 <MessageCircle size={20} className="text-[var(--accent-green)]" />
               </div>
               <div>
                 <h3 className={`font-bold text-base `}>{t('seedhaPuchho', language)}</h3>
-                <p className={`text-xs `}>Ask anything about FD</p>
+                <p className={`text-xs `}>{t('askAnythingAboutFd', language)}</p>
               </div>
             </div>
 
             <p className={`text-xs mb-5 leading-relaxed `}>
-              Koi bhi sawaal puchho - main aapki madad ke liye yahan hoon!
+              {t('botReadyToHelp', language)}
             </p>
 
             <button
