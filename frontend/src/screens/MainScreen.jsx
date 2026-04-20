@@ -1,21 +1,33 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { useChat } from '../context/ChatContext';
 import { useTheme } from '../context/ThemeContext';
 import { t } from '../utils/translations';
 import api from '../utils/api';
-import { Mic, Send, MessageCircle } from 'lucide-react';
+import { Mic, Send, MessageCircle, History, Clock } from 'lucide-react';
 
 export default function MainScreen() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const { language } = useLanguage();
   const { messages, addMessage, isTyping, setTyping, clearMessages } = useChat();
   const { isLight } = useTheme();
   const [input, setInput] = useState('');
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
+  const [historyItems, setHistoryItems] = useState([]);
   const messagesEndRef = useRef(null);
   const recognitionRef = useRef(null);
+
+  useEffect(() => {
+    if (showHistory && user?.id) {
+      api.get(`/api/chat/history/${user.id}`)
+        .then(res => setHistoryItems(res.data.filter(m => m.role === 'user')))
+        .catch(err => console.error('Failed to fetch history', err));
+    }
+  }, [showHistory, user]);
 
   const quickReplies = [
     { key: 'fdKyaHotaHai', text: t('fdKyaHotaHai', language) },
@@ -96,6 +108,59 @@ export default function MainScreen() {
 
   return (
     <div className="h-full flex flex-col overflow-hidden">
+      {/* Header with History Dropdown */}
+      <div className={`px-4 py-2 flex justify-between items-center border-b ${isLight ? 'bg-transparent border-slate-200' : 'bg-transparent/5 border-white/10'}`}>
+        <div className="flex items-center gap-2">
+          <MessageCircle size={18} className="text-[var(--accent-green)]" />
+          <span className="font-semibold text-sm">FD Mitra AI Chat</span>
+        </div>
+        
+        <div className="relative">
+          <button 
+            onClick={() => setShowHistory(!showHistory)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold press-effect transition-all ${
+              isLight ? 'bg-slate-100 hover:bg-slate-200 text-slate-700' : 'bg-transparent/10 hover:bg-transparent/20 text-gray-300'
+            }`}
+          >
+            <History size={14} />
+            Chat History
+          </button>
+          
+          {showHistory && (
+            <div className={`absolute right-0 top-10 w-64 rounded-xl shadow-xl border overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 ${
+              isLight ? 'bg-white border-slate-200' : 'bg-[var(--modal-bg)] border-white/10'
+            }`}>
+              <div className="p-2 max-h-60 overflow-y-auto space-y-1">
+                {historyItems.length === 0 ? (
+                  <p className="p-3 text-center text-xs opacity-60">No recent chat history found.</p>
+                ) : (
+                  historyItems.slice(-15).reverse().map((item, idx) => (
+                    <button 
+                      key={idx}
+                      onClick={() => {
+                        setInput(item.content);
+                        setShowHistory(false);
+                      }}
+                      className={`w-full text-left p-2.5 rounded-lg text-xs line-clamp-2 transition-all ${
+                        isLight ? 'hover:bg-slate-50 text-slate-700' : 'hover:bg-transparent/10 text-gray-300'
+                      }`}
+                    >
+                      <div className="flex justify-between items-center mb-1">
+                        <Clock size={10} className="opacity-50" />
+                        <span className="opacity-50 text-[10px]">
+                          {new Date(item.timestamp).toLocaleDateString()}
+                        </span>
+                      </div>
+                      "{item.content}"
+                    </button>
+                  ))
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* Welcome message */}
