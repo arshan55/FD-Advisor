@@ -1,21 +1,24 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
 import { Home, Scale, Calculator, Wallet, HelpCircle, Sparkles, LogOut } from 'lucide-react';
+import { t } from '../utils/translations';
 import ThemeToggle from './ThemeToggle';
 import LanguageSwitcher from './LanguageSwitcher';
 
 export default function TopNav() {
   const location = useLocation();
   const { isLight } = useTheme();
+  const { language } = useLanguage();
   const { logout } = useAuth();
 
   const tabs = [
-    { path: '/home',       icon: Home,        label: 'Home' },
-    { path: '/compare',    icon: Scale,       label: 'Compare' },
-    { path: '/calculator', icon: Calculator,  label: 'Calc' },
-    { path: '/my-fds',     icon: Wallet,      label: 'My FDs' },
-    { path: '/help',       icon: HelpCircle,  label: 'Help' },
+    { path: '/home',       icon: Home,        label: t('home', language) },
+    { path: '/compare',    icon: Scale,       label: t('compare', language) },
+    { path: '/calculator', icon: Calculator,  label: t('calculator', language) },
+    { path: '/my-fds',     icon: Wallet,      label: t('myFds', language) },
+    { path: '/help',       icon: HelpCircle,  label: t('help', language) },
   ];
 
   return (

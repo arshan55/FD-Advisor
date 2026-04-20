@@ -66,7 +66,7 @@ Thank you for using FD Mitra!
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = \`FD_Mitra_Receipt_\${booking.id.substring(0, 8)}.txt\`;
+    a.download = `FD_Mitra_Receipt_${booking.id.substring(0, 8)}.txt`;
     document.body.appendChild(a);
     a.click();
     window.URL.revokeObjectURL(url);
